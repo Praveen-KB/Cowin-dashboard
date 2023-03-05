@@ -20,9 +20,9 @@ class CowinDashboard extends Component {
   getDetails = async () => {
     this.setState({loadStatus: loaderS.load})
 
-    const apiUrl = 'https://apis.ccbp.in/covid-vaccination-data'
+    const vaccinationDataApiUrl = 'https://apis.ccbp.in/covid-vaccination-data'
 
-    const response = await fetch(apiUrl)
+    const response = await fetch(vaccinationDataApiUrl, {method: 'GET'})
     if (response.ok) {
       const data = await response.json()
       const vacByD = data.last_7_days_vaccination.map(each => ({
@@ -57,13 +57,17 @@ class CowinDashboard extends Component {
   )
 
   renderLoad = () => (
-    <div data-testid="loader">
-      <Loader type="ThreeDots" color="#ffffff" height={80} width={80} />
-    </div>
+    <>
+      {this.renderHeader()}
+      <div data-testid="loader">
+        <Loader type="ThreeDots" color="#ffffff" height={80} width={80} />
+      </div>
+    </>
   )
 
   renderFail = () => (
     <div>
+      {this.renderHeader()}
       <img
         src="https://assets.ccbp.in/frontend/react-js/api-failure-view.png"
         alt="failure view"
@@ -77,6 +81,7 @@ class CowinDashboard extends Component {
 
     return (
       <div>
+        {this.renderHeader()}
         <VaccinationCoverage list={last7days} />
         <VaccinationByAge list={byAge} />
         <VaccinationByGender list={byGender} />
@@ -100,12 +105,7 @@ class CowinDashboard extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.renderHeader()}
-        {this.renderFinal()}
-      </div>
-    )
+    return <div>{this.renderFinal()}</div>
   }
 }
 
