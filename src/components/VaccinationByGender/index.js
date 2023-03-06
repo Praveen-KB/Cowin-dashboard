@@ -6,7 +6,7 @@ const VaccinationByGender = props => {
     <>
       <h1>Vaccination By Gender</h1>
 
-      <PieChart width="100%" height={300} verticalAlign="middle" align="center">
+      <PieChart width={1000} height={300} verticalAlign="middle" align="center">
         <Pie
           cx="50%"
           cy="50%"

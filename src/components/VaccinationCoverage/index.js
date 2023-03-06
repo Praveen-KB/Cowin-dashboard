@@ -22,7 +22,7 @@ const VaccinationCoverage = props => {
       <h1>Vaccination Coverage</h1>
 
       <BarChart
-        width="100%"
+        width={1000}
         height={300}
         verticalAlign="middle"
         align="center"
